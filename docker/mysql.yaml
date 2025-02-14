@@ -1,0 +1,12 @@
+name: mysql
+
+services:
+  mysql:
+    image: mysql:9.1
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345678
+    ports:
+      - "3306:3306"
+    volumes:
+      - /Users/hayson/deployData/mysql:/var/lib/mysql
+

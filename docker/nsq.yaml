@@ -1,0 +1,41 @@
+name: nsq
+
+services:
+  nsqlookupd:
+    image: nsqio/nsq:latest
+    container_name: nsqlookupd
+    command: /nsqlookupd
+    ports:
+      - "4160:4160"
+      - "4161:4161"
+    networks:
+      - nsq-net
+
+  nsqd:
+    image: nsqio/nsq:latest
+    container_name: nsqd
+    command: /nsqd --lookupd-tcp-address=nsqlookupd:4160 --data-path=/data --mem-queue-size=10
+    ports:
+      - "4150:4150"
+      - "4151:4151"
+    volumes:
+      - /Users/hayson/deployData/nsq:/data
+    depends_on:
+      - nsqlookupd
+    networks:
+      - nsq-net
+
+  nsqadmin:
+    image: nsqio/nsq:latest
+    container_name: nsqadmin
+    command: /nsqadmin --lookupd-http-address=nsqlookupd:4161
+    ports:
+      - "4171:4171"
+    depends_on:
+      - nsqlookupd
+    networks:
+      - nsq-net
+
+networks:
+  nsq-net:
+    driver: bridge
