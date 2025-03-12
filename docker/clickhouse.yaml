@@ -1,0 +1,16 @@
+name: clickhouse
+
+services:
+  clickhouse:
+    image: clickhouse:latest
+    environment:
+      CLICKHOUSE_USER: 'root'
+      CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT: 1
+      CLICKHOUSE_PASSWORD: '12345678'
+      CLICKHOUSE_DB: 'test'
+    ports:
+      - '8123:8123'
+      - '9000:9000'
+    volumes:
+      - /Users/hayson/deployData/clickhouse:/var/lib/clickhouse
+
