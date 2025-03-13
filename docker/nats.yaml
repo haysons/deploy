@@ -2,15 +2,11 @@ name: nats
 
 services:
   nats:
-    image: bitnami/nats:latest
-    environment:
-      NATS_ENABLE_AUTH: "yes"
-      NATS_USERNAME: "nats"
-      NATS_PASSWORD: "12345678"
-      NATS_EXTRA_ARGS: "-js"
+    image: nats:latest
+    command: "-js -sd /data"
     ports:
       - '4222:4222'
       - '6222:6222'
       - '8222:8222'
     volumes:
-      - /Users/hayson/deployData/nats:/bitnami/nats/data
+      - /Users/hayson/deployData/nats:/data
