@@ -4,7 +4,6 @@ services:
   etcd1:
     image: "bitnami/etcd:3.5"
     container_name: "etcd1"
-    restart: "always"
     ports:
       - "12379:12379"
     environment:
@@ -26,7 +25,6 @@ services:
   etcd2:
     image: "bitnami/etcd:3.5"
     container_name: "etcd2"
-    restart: "always"
     ports:
       - "22379:22379"
     environment:
@@ -48,7 +46,6 @@ services:
   etcd3:
     image: "bitnami/etcd:3.5"
     container_name: "etcd3"
-    restart: "always"
     ports:
       - "32379:32379"
     environment:
