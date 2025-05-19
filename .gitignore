@@ -11,3 +11,5 @@ output/
 *.test
 *.out
 .env
+**/data/**
+**/logs/**
