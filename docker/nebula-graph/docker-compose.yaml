@@ -6,16 +6,17 @@ services:
     environment:
       USER: root
     command:
-      - --meta_server_addrs=metad:9559
+      - --meta_server_addrs=metad:9559 # 全部meta服务的地址列表
       - --local_ip=metad
-      - --ws_ip=metad
+      - --ws_ip=metad # http服务的ip地址
       - --port=9559
-      - --ws_http_port=19559
+      - --ws_http_port=19559 # http服务的端口
       - --data_path=/data/meta
       - --logtostderr=true
       - --redirect_stdout=false
       - --v=0
-      - --minloglevel=0
+      - --minloglevel=0 # 日志级别，0为info
+      - --timezone_name=UTC+08:00
     healthcheck:
       test: [ "CMD", "curl", "-sf", "http://metad:19559/status" ]
       interval: 30s
@@ -27,7 +28,7 @@ services:
       - "19559"
       - "19560"
     volumes:
-      - /Users/hayson/deployData/nebula-graph/meta:/data/meta
+      - ./data/meta:/data/meta
     networks:
       - nebula-net
     restart: on-failure
@@ -50,6 +51,9 @@ services:
       - --redirect_stdout=false
       - --v=0
       - --minloglevel=0
+      - --timezone_name=UTC+08:00
+      - --rocksdb_block_cache=128 # rocksdb块缓存大小，128M
+      - --max_edge_returned_per_vertex=10000 # 每个节点最多遍历多少临边，避免稠密点耗费性能
     depends_on:
       - metad
     healthcheck:
@@ -63,7 +67,7 @@ services:
       - "19779"
       - "19780"
     volumes:
-      - /Users/hayson/deployData/nebula-graph/storage:/data/storage
+      - ./data/storage:/data/storage
     networks:
       - nebula-net
     restart: on-failure
@@ -84,6 +88,7 @@ services:
       - --redirect_stdout=false
       - --v=0
       - --minloglevel=0
+      - --timezone_name=UTC+08:00
     depends_on:
       - storaged
     healthcheck:

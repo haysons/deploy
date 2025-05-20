@@ -18,7 +18,7 @@ services:
       - ETCD_INITIAL_CLUSTER_STATE=new
       - ETCD_INITIAL_CLUSTER_TOKEN=etcd-dev
     volumes:
-      - /Users/hayson/deployData/etcd/node1:/bitnami/etcd
+      - ./data/node1:/bitnami/etcd
     networks:
       - etcd-net
 
@@ -39,7 +39,7 @@ services:
       - ETCD_INITIAL_CLUSTER_STATE=new
       - ETCD_INITIAL_CLUSTER_TOKEN=etcd-dev
     volumes:
-      - /Users/hayson/deployData/etcd/node2:/bitnami/etcd
+      - ./data/node2:/bitnami/etcd
     networks:
       - etcd-net
 
@@ -60,7 +60,7 @@ services:
       - ETCD_INITIAL_CLUSTER_STATE=new
       - ETCD_INITIAL_CLUSTER_TOKEN=etcd-dev
     volumes:
-      - /Users/hayson/deployData/etcd/node3:/bitnami/etcd
+      - ./data/node3:/bitnami/etcd
     networks:
       - etcd-net
 
