@@ -3,10 +3,10 @@ name: redis
 services:
   redis:
     image: redis/redis-stack:latest
-    environment:
-      REDIS_ARGS: "--requirepass 12345678"
     ports:
       - "6379:6379"
       - "8001:8001"
     volumes:
-      - /Users/hayson/deployData/redis:/data
+      - ./data:/data
+      - ./conf/redis.conf:/redis-stack.conf
+    restart: on-failure
