@@ -18,7 +18,6 @@ services:
       - --initial-cluster=pd0=http://pd0:2380
       - --data-dir=/data/pd0
       - --config=/pd.toml
-      - --log-file=/logs/pd0.log
     restart: on-failure
 
   tikv0:
@@ -33,7 +32,6 @@ services:
       - --data-dir=/data/tikv0
       - --pd=pd0:2379
       - --config=/tikv.toml
-      - --log-file=/logs/tikv0.log
     depends_on:
       - "pd0"
     restart: on-failure
@@ -50,7 +48,6 @@ services:
       - --store=tikv
       - --path=pd0:2379
       - --config=/tidb.toml
-      - --log-file=/logs/tidb.log
       - --advertise-address=tidb
     depends_on:
       - "tikv0"
