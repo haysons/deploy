@@ -1,0 +1,26 @@
+# 数据存储位置
+db_path = "/meili_data"
+
+# http服务器监听的端口
+http_addr = "localhost:7700"
+
+# 访问接口所需的主密钥
+master_key = "12345678"
+
+# http请求体上限
+http_payload_size_limit = "100 MB"
+
+# 日志级别，`OFF`, `ERROR`, `WARN`, `INFO`, `DEBUG`, `TRACE`
+log_level = "WARN"
+
+# 索引可使用的最大内存
+max_indexing_memory = "1Gb"
+
+# 索引期间可使用的最大线程数
+max_indexing_threads = 4
+
+# 开启自动快照，可用于数据备份及迁移
+schedule_snapshot = false
+
+# 快照文件保存路径
+snapshot_dir = "/meili_snapshots"

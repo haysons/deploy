@@ -1,0 +1,12 @@
+name: meilisearch
+
+services:
+  meilisearch:
+    image: getmeili/meilisearch:v1.14
+    environment:
+      MEILI_CONFIG_FILE_PATH: /meili_config.toml
+    ports:
+      - "7700:7700"
+    volumes:
+      - ./data:/meili_data
+      - ./conf/config.toml:/meili_config.toml
