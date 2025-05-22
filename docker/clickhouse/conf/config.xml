@@ -1,0 +1,32 @@
+<clickhouse>
+    <!-- 日志配置 -->
+    <logger>
+        <level>warning</level>
+        <log>/var/log/clickhouse-server/clickhouse-server.log</log>
+        <errorlog>/var/log/clickhouse-server/clickhouse-server.err.log</errorlog>
+        <size>100M</size>
+        <count>2</count>
+    </logger>
+
+    <!-- 容器内需监听 0.0.0.0 -->
+    <listen_host>0.0.0.0</listen_host>
+
+    <!-- HTTP 接口端口（用于 REST API 及 Web UI） -->
+    <http_port>8123</http_port>
+
+    <!-- ClickHouse TCP 端口（用于客户端/驱动连接） -->
+    <tcp_port>9000</tcp_port>
+
+    <!-- 数据存储路径 -->
+    <path>/var/lib/clickhouse</path>
+
+    <!-- 最大同时执行查询数量 -->
+    <max_concurrent_queries>1000</max_concurrent_queries>
+
+    <!-- 最大内存使用量 -->
+    <max_server_memory_usage>0</max_server_memory_usage>
+    <max_server_memory_usage_to_ram_ratio>0.2</max_server_memory_usage_to_ram_ratio>
+
+    <!-- 线程池最大线程数 -->
+    <max_thread_pool_size>1000</max_thread_pool_size>
+</clickhouse>

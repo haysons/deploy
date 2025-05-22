@@ -12,5 +12,6 @@ services:
       - '8123:8123'
       - '9000:9000'
     volumes:
-      - /Users/hayson/deployData/clickhouse:/var/lib/clickhouse
-
+      - ./conf:/etc/clickhouse-server/config.d
+      - ./data:/var/lib/clickhouse
+      - ./logs:/var/log/clickhouse-server

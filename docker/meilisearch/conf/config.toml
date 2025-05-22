@@ -1,8 +1,8 @@
 # 数据存储位置
 db_path = "/meili_data"
 
-# http服务器监听的端口
-http_addr = "localhost:7700"
+# http服务器监听的端口，容器内需为0.0.0.0
+http_addr = "0.0.0.0:7700"
 
 # 访问接口所需的主密钥
 master_key = "12345678"
