@@ -19,7 +19,7 @@ services:
       - "4150:4150"
       - "4151:4151"
     volumes:
-      - /Users/hayson/deployData/nsq:/data
+      - ./data:/data
     depends_on:
       - nsqlookupd
     networks:
