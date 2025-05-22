@@ -1,30 +1,38 @@
 ## Deploy
 
-**deploy** is an open-source project that provides ready-to-use `Docker Compose` deployment files for commonly used
-infrastructure components. It aims to simplify the setup of development and production environments by offering modular,
-configurable, and easy-to-understand deployment templates.
+**deploy** is an open-source project that provides ready-to-use `Docker Compose` templates for commonly used
+infrastructure components. It is designed to help developers **quickly spin up services in local development
+environments** for testing, debugging, and experimentation.
 
-## Features
+## ✨ Features
 
-- 📦 Preconfigured Docker Compose files for popular services
-- ⚙️ Minimal and clean configuration with sane defaults
-- 🧩 Easily composable and customizable setups
-- 📁 Well-organized directory structure for different stacks
-- ✅ Designed for both local development and production usage
+- ⚡ **Local-first**: Preconfigured Docker Compose files designed specifically for local development
+- 🧩 **Modular structure**: Each service is isolated in its own directory and can be used independently or composed
+  together
+- ⚙️ **Clean configurations**: Minimal, readable defaults that are easy to customize
+- 📁 **Organized layout**: Consistent directory naming and structure for easy navigation
+- 🚀 **Quick start**: No complex setup — just Docker and Docker Compose
 
-## Available Components
+## 📦 Available Components
 
-The following components (with more to come) are available:
+The following services are currently available (with more to come):
 
-- etcd
-- mysql
-- nebula-graph
-- tidb
-- clickhouse
-- meilisearch
-- minio
-- mongodb
-- nats
-- nsq
-- redis
+- `etcd`
+- `mysql`
+- `nebula-graph`
+- `tidb`
+- `clickhouse`
+- `meilisearch`
+- `minio`
+- `mongodb`
+- `nats`
+- `nsq`
+- `redis`
 - etc.
+
+### ▶️ Quick Start Example
+
+```bash
+cd docker/mysql
+docker-compose up -d
+```
