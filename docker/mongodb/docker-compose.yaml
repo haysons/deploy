@@ -1,0 +1,25 @@
+name: mongodb
+
+services:
+  mongodb:
+    image: mongo:latest
+    command: "--wiredTigerCacheSizeGB 1"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: 12345678
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./data:/data/db
+    restart: on-failure
+
+  mongo-express:
+    image: mongo-express:latest
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: 12345678
+      ME_CONFIG_MONGODB_URL: mongodb://root:12345678@mongodb:27017/
+      ME_CONFIG_BASICAUTH: false
+    restart: on-failure
