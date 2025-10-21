@@ -1,0 +1,12 @@
+groups:
+  - name: demo_service_alerts
+    rules:
+      - alert: DemoServiceNotIncreasing
+        expr: rate(demo_requests_total[1m]) == 0
+        for: 30s
+        labels:
+          severity: warning
+          service: demo-go
+        annotations:
+          summary: "Demo Go service is not increasing requests"
+          description: "The demo_requests_total metric on host {{ $labels.instance }} has not increased for the past minute."

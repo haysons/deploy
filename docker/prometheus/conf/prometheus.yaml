@@ -1,0 +1,29 @@
+global:
+  # 抓取时间间隔
+  scrape_interval: 15s
+  # 抓取超时时间
+  scrape_timeout: 10s
+  # 告警规则评估时间间隔
+  evaluation_interval: 15s
+
+# alertmanager 配置
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: [ 'alertmanager:9093' ]
+
+# 告警规则文件
+rule_files:
+#  - "alter_rule.yaml"
+
+# 具体抓取配置
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: [ 'prometheus:9090' ]
+
+  # 抓取宿主机暴露的数据，便于本地测试
+  - job_name: 'host-test'
+    static_configs:
+      - targets: [ 'host.docker.internal:8080' ]
+
