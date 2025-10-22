@@ -1,15 +1,26 @@
 name: prometheus
 
 services:
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib
+    volumes:
+      - ./conf/otel-collector-config.yaml:/etc/otelcol-contrib/config.yaml
+    ports:
+      - '4317:4317' # gRPC 接收器端口
+    networks:
+      - prom-net
+
   prometheus:
     image: prom/prometheus
     ports:
       - '9090:9090'
     volumes:
       - ./conf/prometheus.yaml:/etc/prometheus/prometheus.yaml
-      - ./conf/alter_rule.yaml:/etc/prometheus/alter_rule.yaml
+      - ./conf/alter-rule.yaml:/etc/prometheus/alter-rule.yaml
     networks:
       - prom-net
+    depends_on:
+      - otel-collector
 
   alertmanager:
     image: prom/alertmanager
@@ -20,6 +31,17 @@ services:
     networks:
       - prom-net
 
+  grafana:
+    image: grafana/grafana:latest
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=12345678
+    ports:
+      - "3000:3000"
+    networks:
+      - prom-net
+    depends_on:
+      - prometheus
 
 networks:
   prom-net:
