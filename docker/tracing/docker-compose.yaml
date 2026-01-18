@@ -1,24 +1,27 @@
 name: tracing
 
 services:
-  otel-collector:
-    image: otel/opentelemetry-collector-contrib:latest
-    volumes:
-      - ./conf/otel-collector-config.yaml:/etc/otelcol-contrib/config.yaml
-    ports:
-      - '4317:4317'  # gRPC 接收器端口
-    networks:
-      - trace-net
-
   tempo:
     image: grafana/tempo:latest
+    command: [ "-config.file=/etc/tempo.yaml" ]
     volumes:
       - ./conf/tempo.yaml:/etc/tempo.yaml
       - ./data/tempo:/tmp/tempo
     networks:
       - trace-net
+
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:latest
+    command: [ "--config=/etc/otelcol-contrib/config.yaml" ]
+    volumes:
+      - ./conf/otel-collector-config.yaml:/etc/otelcol-contrib/config.yaml
+    ports:
+      - '4317:4317'  # gRPC 接收器端口
+      - "4318:4318" # http 接收器端口
+    networks:
+      - trace-net
     depends_on:
-      - otel-collector
+      - tempo
 
   grafana:
     image: grafana/grafana:latest

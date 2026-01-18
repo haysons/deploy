@@ -7,11 +7,11 @@ distributor:
     otlp:
       protocols:
         grpc:
+          endpoint: "0.0.0.0:4317"
         http:
+          endpoint: "0.0.0.0:4318"
 
 ingester:
-  wal:
-    enabled: false
   max_block_duration: 5m
 
 compactor:
